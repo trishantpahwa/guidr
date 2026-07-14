@@ -22,6 +22,14 @@ export function TourTooltip() {
   const { refs, floatingStyles, context } = useFloating({
     open: true,
     placement: currentStep?.placement ?? "bottom",
+    // "fixed" (not the default "absolute") keeps the floating element
+    // viewport-relative. With "absolute", anchoring to a `position: fixed`
+    // reference (a common pattern for docked sidebars/toolbars) on a page
+    // taller than one screen positions the tooltip document-relative
+    // instead — it can render far off the intended spot, sometimes fully
+    // outside the viewport. "fixed" is correct for in-flow targets too:
+    // autoUpdate already re-measures on scroll/resize regardless of strategy.
+    strategy: "fixed",
     whileElementsMounted: autoUpdate,
     middleware: [
       offset((currentStep?.offset ?? 12) + ARROW_SIZE / 2),
@@ -47,13 +55,16 @@ export function TourTooltip() {
   const stepNumber = state.stepIndex + 1;
   const totalSteps = state.steps.length;
   const labels = options.labels;
+  const cardClassName = ["guidr-card", options.tooltipClassName, currentStep.className]
+    .filter(Boolean)
+    .join(" ");
 
   const card = (
     <div
       role="dialog"
       aria-modal="true"
       aria-label={typeof currentStep.title === "string" ? currentStep.title : "Tour step"}
-      className="guidr-card"
+      className={cardClassName}
     >
       {options.showSkipButton && !isLastStep && (
         <button

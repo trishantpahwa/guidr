@@ -155,6 +155,8 @@ export function TourProvider({ children, steps, ...rest }: TourProviderProps) {
         scrollIntoView: rest.scrollIntoView ?? true,
         spotlightPadding: rest.spotlightPadding ?? 8,
         spotlightRadius: rest.spotlightRadius ?? 8,
+        tooltipClassName: rest.tooltipClassName ?? "",
+        overlayClassName: rest.overlayClassName ?? "",
         labels: { ...DEFAULT_LABELS, ...rest.labels },
       },
     }),
@@ -177,6 +179,8 @@ export function TourProvider({ children, steps, ...rest }: TourProviderProps) {
       rest.scrollIntoView,
       rest.spotlightPadding,
       rest.spotlightRadius,
+      rest.tooltipClassName,
+      rest.overlayClassName,
       rest.labels,
     ],
   );

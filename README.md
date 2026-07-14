@@ -86,6 +86,8 @@ Mount `<TourProvider>` once near the root of the layout/page that owns the eleme
 | `scrollIntoView` | `boolean` | `true` | Auto-scroll the target into view. |
 | `spotlightPadding` | `number` | `8` | Padding (px) around the highlighted element. |
 | `spotlightRadius` | `number` | `8` | Corner radius (px) of the spotlight. |
+| `tooltipClassName` | `string` | — | Extra class(es) merged onto every step's tooltip card (`.guidr-card`). |
+| `overlayClassName` | `string` | — | Extra class(es) merged onto the dimmed overlay. |
 | `labels` | `{ next, back, done, skip }` | English defaults | Button label overrides (i18n). |
 | `onStart` / `onComplete` / `onExit` / `onStepChange` | `function` | — | Lifecycle callbacks. |
 
@@ -101,6 +103,7 @@ interface TourStep {
   offset?: number;
   disableSpotlight?: boolean;
   disableInteraction?: boolean;
+  className?: string; // merged onto this step's tooltip card
   onBeforeStep?: () => void | Promise<void>;
   onAfterStep?: () => void;
 }

@@ -19,6 +19,8 @@ export interface TourStep {
   disableSpotlight?: boolean;
   /** Disable pointer interaction with the highlighted element. Defaults to false. */
   disableInteraction?: boolean;
+  /** Extra class name(s) merged onto this step's tooltip card (`.guidr-card`), for styling a single step without a global selector. */
+  className?: string;
   /** Called right before this step is shown. */
   onBeforeStep?: () => void | Promise<void>;
   /** Called right after this step is shown. */
@@ -45,6 +47,10 @@ export interface TourOptions {
   spotlightPadding?: number;
   /** Corner radius (px) of the spotlight cutout. Defaults to 8. */
   spotlightRadius?: number;
+  /** Extra class name(s) merged onto every step's tooltip card (`.guidr-card`). Combine with a step's own `className` for per-step overrides on top of a tour-wide one. */
+  tooltipClassName?: string;
+  /** Extra class name(s) merged onto the dimmed overlay (`.guidr-overlay-wrapper` / `.guidr-overlay-full`). */
+  overlayClassName?: string;
   /** Labels for the built-in tooltip buttons. */
   labels?: Partial<{
     next: string;

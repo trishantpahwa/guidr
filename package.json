@@ -1,6 +1,6 @@
 {
   "name": "guidrjs",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "A lightweight, App Router-friendly step-by-step product tour library for Next.js and React.",
   "license": "MIT",
   "type": "module",

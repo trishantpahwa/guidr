@@ -17,11 +17,13 @@ export function TourOverlay() {
   const padding = options.spotlightPadding;
   const radius = options.spotlightRadius;
 
+  const overlayClassName = ["guidr-overlay-wrapper", options.overlayClassName].filter(Boolean).join(" ");
+
   // No target (centered/modal step): dim the whole viewport, no cutout.
   if (!rect) {
     return (
       <div
-        className="guidr-overlay guidr-overlay-full"
+        className={["guidr-overlay", "guidr-overlay-full", options.overlayClassName].filter(Boolean).join(" ")}
         onClick={handleOverlayClick}
         aria-hidden="true"
       />
@@ -38,7 +40,7 @@ export function TourOverlay() {
   const boxStyle: CSSProperties = { position: "fixed" };
 
   return (
-    <div className="guidr-overlay-wrapper" aria-hidden="true">
+    <div className={overlayClassName} aria-hidden="true">
       <div
         className="guidr-overlay"
         style={{ ...boxStyle, top: 0, left: 0, right: 0, height: hole.top }}
