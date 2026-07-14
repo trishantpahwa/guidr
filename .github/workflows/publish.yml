@@ -1,0 +1,64 @@
+name: "🚀 Publish to npm"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsup.config.ts"
+      - "README.md"
+      - "LICENSE"
+
+jobs:
+  publish:
+    name: 🚀 publish npm
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check if version changed
+        id: version-check
+        run: |
+          LOCAL_VERSION=$(node -p "require('./package.json').version")
+          PUBLISHED_VERSION=$(npm view "$(node -p "require('./package.json').name")" version 2>/dev/null || echo "none")
+          echo "local=$LOCAL_VERSION" >> "$GITHUB_OUTPUT"
+          echo "published=$PUBLISHED_VERSION" >> "$GITHUB_OUTPUT"
+          if [ "$LOCAL_VERSION" = "$PUBLISHED_VERSION" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Typecheck
+        if: steps.version-check.outputs.changed == 'true'
+        run: npm run typecheck
+
+      - name: Lint
+        if: steps.version-check.outputs.changed == 'true'
+        run: npm run lint
+
+      - name: Build
+        if: steps.version-check.outputs.changed == 'true'
+        run: npm run build
+
+      - name: 🚀 Publish
+        if: steps.version-check.outputs.changed == 'true'
+        run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

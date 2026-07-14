@@ -1,0 +1,180 @@
+/**
+ * guidr default theme.
+ * Override any of these CSS variables (e.g. on :root) to re-theme the tour,
+ * or ignore this file entirely and style the .guidr-* classes yourself.
+ */
+:root {
+  --guidr-overlay-color: rgba(15, 15, 20, 0.6);
+  --guidr-highlight-ring-color: #ffffff;
+  --guidr-card-bg: #ffffff;
+  --guidr-card-fg: #1a1a1f;
+  --guidr-card-muted-fg: #6b7280;
+  --guidr-card-radius: 12px;
+  --guidr-card-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.12);
+  --guidr-accent: #4f46e5;
+  --guidr-accent-fg: #ffffff;
+  --guidr-z-index: 9999;
+}
+
+.guidr-overlay-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: var(--guidr-z-index);
+}
+
+.guidr-overlay {
+  background: var(--guidr-overlay-color);
+  cursor: pointer;
+}
+
+.guidr-overlay-full {
+  position: fixed;
+  inset: 0;
+  background: var(--guidr-overlay-color);
+  z-index: var(--guidr-z-index);
+  cursor: pointer;
+}
+
+.guidr-spotlight {
+  position: fixed;
+  box-shadow: 0 0 0 2px var(--guidr-highlight-ring-color);
+  pointer-events: none;
+  transition: top 0.2s ease, left 0.2s ease, width 0.2s ease, height 0.2s ease;
+}
+
+.guidr-interaction-blocker {
+  position: fixed;
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.guidr-floating {
+  z-index: calc(var(--guidr-z-index) + 1);
+  max-width: min(360px, calc(100vw - 24px));
+}
+
+.guidr-modal-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: calc(var(--guidr-z-index) + 1);
+  max-width: min(400px, calc(100vw - 32px));
+}
+
+.guidr-arrow {
+  fill: var(--guidr-card-bg);
+}
+
+.guidr-card {
+  position: relative;
+  background: var(--guidr-card-bg);
+  color: var(--guidr-card-fg);
+  border-radius: var(--guidr-card-radius);
+  box-shadow: var(--guidr-card-shadow);
+  padding: 16px 18px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.guidr-skip-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--guidr-card-muted-fg);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.guidr-skip-btn:hover {
+  color: var(--guidr-card-fg);
+}
+
+.guidr-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 6px;
+  padding-right: 20px;
+}
+
+.guidr-content {
+  color: var(--guidr-card-fg);
+  margin-bottom: 14px;
+}
+
+.guidr-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.guidr-progress-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guidr-progress-text {
+  font-size: 12px;
+  color: var(--guidr-card-muted-fg);
+  white-space: nowrap;
+}
+
+.guidr-bullets {
+  display: flex;
+  gap: 5px;
+}
+
+.guidr-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--guidr-card-muted-fg);
+  opacity: 0.35;
+}
+
+.guidr-bullet-active {
+  opacity: 1;
+  background: var(--guidr-accent);
+}
+
+.guidr-buttons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.guidr-btn {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 7px;
+  padding: 6px 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.guidr-btn-primary {
+  background: var(--guidr-accent);
+  color: var(--guidr-accent-fg);
+}
+
+.guidr-btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.guidr-btn-secondary {
+  background: transparent;
+  color: var(--guidr-card-muted-fg);
+}
+
+.guidr-btn-secondary:hover {
+  color: var(--guidr-card-fg);
+}
