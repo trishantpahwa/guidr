@@ -1,7 +1,7 @@
 "use client";
 
-import { TourProvider } from "guidr";
-import "guidr/styles.css";
+import { TourProvider } from "guidrjs";
+import "guidrjs/styles.css";
 import { Dashboard } from "./dashboard";
 
 const steps = [

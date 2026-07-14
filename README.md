@@ -17,7 +17,7 @@ Think [intro.js](https://introjs.com/), but as React components/hooks with `"use
 ## Install
 
 ```bash
-npm install guidr
+npm install guidrjs
 ```
 
 ## Usage
@@ -26,8 +26,8 @@ npm install guidr
 // app/dashboard/page.tsx
 "use client";
 
-import { TourProvider, useTour } from "guidr";
-import "guidr/styles.css";
+import { TourProvider, useTour } from "guidrjs";
+import "guidrjs/styles.css";
 
 const steps = [
   {

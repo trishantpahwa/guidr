@@ -1,6 +1,6 @@
 "use client";
 
-import { useTour } from "guidr";
+import { useTour } from "guidrjs";
 
 const projects = [
   { name: "marketing-site", status: "Ready" },
